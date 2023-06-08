@@ -10,14 +10,19 @@
   },
   "dependencies": {
     "@next/font": "13.4.4",
+    "@types/highlightjs": "^9.12.2",
     "@types/node": "20.2.5",
     "@types/react": "18.2.8",
     "@types/react-dom": "18.2.4",
+    "@types/react-syntax-highlighter": "^15.5.7",
     "eslint": "8.42.0",
     "eslint-config-next": "13.4.4",
+    "highlightjs": "^9.16.2",
     "next": "13.4.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-syntax-highlighter": "^15.5.0",
+    "sass": "^1.62.1",
     "swr": "^2.1.5",
     "typescript": "5.1.3"
   }
