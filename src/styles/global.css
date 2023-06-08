@@ -6,6 +6,12 @@
   box-sizing: border-box;
 }
 
+input,
+textarea {
+  outline: none;
+  border: none;
+}
+
 h1,
 h2,
 h3,
@@ -14,13 +20,20 @@ h5,
 h6,
 p,
 a,
+textarea,
 input {
   color: #161718;
 }
 
-body {
+body,
+textarea,
+input {
   font-family: 'Segoe UI', 'Verdana';
   line-height: 160%;
+}
+
+body {
+  background-color: #e9eefb;
 }
 
 h1 {
@@ -49,10 +62,7 @@ h6 {
   font-weight: 600;
 }
 
-p {
+p,
+textarea {
   font-size: 14px;
-}
-
-body {
-  background-color: #e9eefb;
 }

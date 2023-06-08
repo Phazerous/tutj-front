@@ -3,7 +3,7 @@ export default interface ITask {
   taskOrder: number;
   description: string;
   answer: string;
-  code?: string;
-  comment?: string;
-  filesPathes?: string[];
+  code: string;
+  comment: string;
+  filesPathes: string[];
 }

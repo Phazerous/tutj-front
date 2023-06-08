@@ -1,6 +1,3 @@
-import useSWR from 'swr';
-import { get } from '../lib/routing/base';
-import DownloadableFile from '../ui/components/downloadable-file/downloadable-file';
 import Task from '../ui/components/tasks/task/task';
 import ITask from '../interfaces/Task.interface';
 
@@ -51,7 +48,7 @@ const dummy: ITask = {
   //         cnt += div15
 
   // print(cnt)`,
-  // comment: 'hello world',
+  comment: 'hello world',
   filesPathes: ['http://localhost:3000/files/drozd.txt'],
 };
 
