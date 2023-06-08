@@ -10,17 +10,32 @@ const Icon = (
 );
 
 interface DownloadableFileProps {
-  fileName: string;
+  fileNameWithExtension: string;
+  filePath: string;
 }
 
 import styles from './downloadable-file.module.scss';
 
-export default function DownloadableFile({ fileName }: DownloadableFileProps) {
+export default function DownloadableFile({
+  fileNameWithExtension,
+  filePath,
+}: DownloadableFileProps) {
+  const handleDownloadClick = () => {
+    const link = document.createElement('a');
+    link.href = filePath;
+    link.download = fileNameWithExtension;
+
+    link.click();
+    link.remove();
+  };
+
   return (
     <>
-      <div className={styles.downloadable}>
+      <div
+        className={styles.downloadable}
+        onClick={handleDownloadClick}>
         {Icon}
-        <h6>{fileName}</h6>
+        <h6>{fileNameWithExtension}</h6>
       </div>
     </>
   );

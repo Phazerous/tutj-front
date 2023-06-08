@@ -1,8 +1,9 @@
 export default interface ITask {
   id: number;
+  taskOrder: number;
   description: string;
   answer: string;
   code?: string;
   comment?: string;
-  filesNames: string[];
+  filesPathes?: string[];
 }

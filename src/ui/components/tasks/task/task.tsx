@@ -6,22 +6,27 @@ import { androidstudio } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 export default function Task({
   id,
-  idx,
+  taskOrder,
   description,
   answer,
   code,
-  filesNames = [],
+  filesPathes = [],
   comment,
 }: ITask & { idx: number }) {
-  const files = filesNames.map((fileName: string, idx: number) => (
+  const files = filesPathes.map((filePath: string, idx: number) => {
+    const chunks = filePath.split('.');
+    const extension = chunks.slice(-1);
+
+    if (extension === undefined) throw new Error('FilePath Extension Error');
+
     <DownloadableFile
       key={idx}
-      fileName={fileName}
-    />
-  ));
+      fileNameWithExtension={`${idx + 1}.${extension}`}
+      filePath={filePath}
+    />;
+  });
 
-  //IMPLEMENT PRE CODE FORMATTING
-  const formattedCode = !code ? null : (
+  const codeSegment = !code ? null : (
     <div className={styles.segment}>
       <h6>Код</h6>
       <div className={styles.codeBlock}>
@@ -34,7 +39,7 @@ export default function Task({
     </div>
   );
 
-  const formattedComment = !comment ? null : (
+  const commentSegment = !comment ? null : (
     <div className={styles.segment}>
       <h6>Комментарий</h6>
       <p>{comment}</p>
@@ -44,7 +49,7 @@ export default function Task({
   return (
     <>
       <article className={styles.article}>
-        <h5>Задания {idx}</h5>
+        <h5>Задания {taskOrder}</h5>
         <div className={styles.content}>
           <div className={styles.segment + ' ' + styles.taskCondition}>
             <p>{description}</p>
@@ -54,8 +59,8 @@ export default function Task({
             <h6>Ответ</h6>
             <p>{answer}</p>
           </div>
-          {formattedCode}
-          {formattedComment}
+          {codeSegment}
+          {commentSegment}
         </div>
       </article>
     </>

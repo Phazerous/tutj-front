@@ -14,6 +14,7 @@ const dummy: ITask = {
   3 7
   Примечание. Простое число — натуральное число, имеющее ровно два различных натуральных делителя — единицу и самого себя.`,
   answer: '3 58153',
+  taskOrder: 24,
   // code: `
   // file = open('27/40B.txt')
   // n = int(file.readline())
@@ -51,18 +52,23 @@ const dummy: ITask = {
 
   // print(cnt)`,
   // comment: 'hello world',
-  // filesNames: ['1.txt'],
+  filesPathes: ['https://faithful.team/api/versions/1.18.zip'],
 };
 
 export default function Text() {
+  // return (
+  //   <Task
+  //     {...dummy}
+  //     idx={5}
+  //   />
+  // );
+
   return (
-    <Task
-      {...dummy}
-      idx={5}
+    <DownloadableFile
+      fileNameWithExtension='24.txt'
+      filePath='https://faithful.team/api/versions/1.18.zip'
     />
   );
-
-  return <DownloadableFile fileName='24.txt' />;
   // const { data, error } = useSWR('examNums', get);
 
   // return <h1>{data && data.toString()}</h1>;
