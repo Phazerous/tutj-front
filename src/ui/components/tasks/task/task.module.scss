@@ -30,3 +30,31 @@
   border-radius: 4px;
   overflow: hidden;
 }
+
+.noPointer {
+  user-select: none;
+}
+
+.edit {
+  align-self: flex-end;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px;
+  border: 1px solid #7a7a7a;
+  color: #7a7a7a;
+
+  border-radius: 4px;
+}
+
+.edit:hover {
+  border-color: #505050;
+  color: #505050;
+  background-color: #ebebeb;
+}
+
+.edit:active {
+  background-color: #c9c9c9;
+}

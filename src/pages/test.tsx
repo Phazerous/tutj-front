@@ -52,23 +52,23 @@ const dummy: ITask = {
 
   // print(cnt)`,
   // comment: 'hello world',
-  filesPathes: ['https://faithful.team/api/versions/1.18.zip'],
+  filesPathes: ['http://localhost:3000/files/drozd.txt'],
 };
 
 export default function Text() {
-  // return (
-  //   <Task
-  //     {...dummy}
-  //     idx={5}
-  //   />
-  // );
-
   return (
-    <DownloadableFile
-      fileNameWithExtension='24.txt'
-      filePath='http://localhost:3000/files/1.txt'
+    <Task
+      {...dummy}
+      idx={5}
     />
   );
+  //
+  // return (
+  //   <DownloadableFile
+  //     fileNameWithExtension='24.txt'
+  //     filePath='http://localhost:3000/files/1.txt'
+  //   />
+  // );
   // const { data, error } = useSWR('examNums', get);
 
   // return <h1>{data && data.toString()}</h1>;

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import ITask from '../../../../interfaces/Task.interface';
 import DownloadableFile from '../../downloadable-file/downloadable-file';
 import styles from './task.module.scss';
@@ -19,11 +20,13 @@ export default function Task({
 
     if (extension === undefined) throw new Error('FilePath Extension Error');
 
-    <DownloadableFile
-      key={idx}
-      fileNameWithExtension={`${idx + 1}.${extension}`}
-      filePath={filePath}
-    />;
+    return (
+      <DownloadableFile
+        key={idx}
+        fileNameWithExtension={`${idx + 1}.${extension}`}
+        filePath={filePath}
+      />
+    );
   });
 
   const codeSegment = !code ? null : (
@@ -61,8 +64,19 @@ export default function Task({
           </div>
           {codeSegment}
           {commentSegment}
+          <div className={styles.edit}>{editIcon}</div>
         </div>
       </article>
     </>
   );
 }
+
+const editIcon = (
+  <Image
+    src='/icons/edit.svg'
+    width={18}
+    height={18}
+    className={styles.noSelect}
+    alt='Edit Icon'
+  />
+);
