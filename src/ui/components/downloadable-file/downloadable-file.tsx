@@ -20,12 +20,20 @@ export default function DownloadableFile({
   fileNameWithExtension,
   filePath,
 }: DownloadableFileProps) {
-  const handleDownloadClick = () => {
-    const link = document.createElement('a');
-    link.href = filePath;
-    link.download = fileNameWithExtension;
+  const handleDownloadClick = async () => {
+    const response = await fetch(filePath);
 
+    const blob = await response.blob();
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileNameWithExtension;
+    document.body.appendChild(link);
     link.click();
+
+    URL.revokeObjectURL(url);
     link.remove();
   };
 

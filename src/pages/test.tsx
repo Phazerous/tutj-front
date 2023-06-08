@@ -66,7 +66,7 @@ export default function Text() {
   return (
     <DownloadableFile
       fileNameWithExtension='24.txt'
-      filePath='https://faithful.team/api/versions/1.18.zip'
+      filePath='http://localhost:3000/files/1.txt'
     />
   );
   // const { data, error } = useSWR('examNums', get);
