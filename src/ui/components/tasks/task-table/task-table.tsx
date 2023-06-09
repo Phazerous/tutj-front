@@ -1,25 +1,23 @@
-import { useRouter } from 'next/router';
-import TaskRow from '../task-row/task-row';
+import TaskField from '../task-field/task-field';
 
 interface TaskTableProps {
-  tasksInRow: number;
-  taskIds: number[];
+  tasksIds: number[];
 }
 
-export default function TaskTable({ tasksInRow, taskIds }: TaskTableProps) {
-  const router = useRouter();
+import styles from './task-table.module.scss';
 
-
-  const handleClick = (taskId: number) => {
-    const url = `tasks/:id`
-  }
-
+export default function TaskTable({ tasksIds }: TaskTableProps) {
   return (
     <>
-      <TaskRow
-        tasksIds={taskIds}
-        tasksInRow={tasksInRow}
-      />
+      <div className={styles.table}>
+        {tasksIds.map((taskId, idx) => (
+          <TaskField
+            key={taskId}
+            taskOrder={idx + 1}
+            taskId={taskId}
+          />
+        ))}
+      </div>
     </>
   );
 }

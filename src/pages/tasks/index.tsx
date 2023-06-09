@@ -25,10 +25,7 @@ export default function Tasks() {
 
   return (
     <>
-      <TaskTable
-        taskIds={tasksIds}
-        tasksInRow={4}
-      />
+      <TaskTable tasksIds={tasksIds} />
     </>
   );
 }

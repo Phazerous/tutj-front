@@ -1,0 +1,8 @@
+.table {
+  display: grid;
+  justify-content: center;
+
+  grid-template-columns: repeat(6, min-content);
+  column-gap: 20px;
+  row-gap: 12px;
+}
