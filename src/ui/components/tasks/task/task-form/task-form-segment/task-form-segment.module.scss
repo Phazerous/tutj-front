@@ -1,0 +1,10 @@
+.segment {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.codeBlock {
+  border-radius: 4px;
+  overflow: hidden;
+}

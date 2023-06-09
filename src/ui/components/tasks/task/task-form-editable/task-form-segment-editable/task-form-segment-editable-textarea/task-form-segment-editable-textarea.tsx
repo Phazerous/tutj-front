@@ -1,12 +1,15 @@
+import { ChangeEvent, useEffect, useRef } from 'react';
+import styles from './task-form-segment-editable-textarea.module.scss';
+
 interface TextAreaProps {
-  value: string;
+  content: string;
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-import { ChangeEvent, useEffect, useRef } from 'react';
-import styles from './text-area.module.scss';
-
-export default function TextArea({ value, onChange }: TextAreaProps) {
+export default function TaskFormSegmentEditableTextarea({
+  content,
+  onChange,
+}: TextAreaProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -23,7 +26,7 @@ export default function TextArea({ value, onChange }: TextAreaProps) {
         className={styles.textarea}
         onChange={onChange}
         ref={textareaRef}>
-        {value}
+        {content}
       </textarea>
     </>
   );

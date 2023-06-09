@@ -1,54 +1,39 @@
 import { ChangeEvent, useState } from 'react';
-import { patch } from '../lib/routing/base';
+import { TaskSegmentType } from '../ui/components/tasks/task/task-segment-type.enum';
+import Task from '../interfaces/task.interface';
 
-interface TaskForm {
-  id: number;
-  examNum: number;
-  description: string;
-  answer: string;
-  code: string;
-  comment: string;
+interface TaskFormProps {
+  task?: Task | undefined;
 }
 
-interface SaveProps {
-  onSave: () => void;
-}
+export default function useTaskForm({ task }: TaskFormProps = {}) {
+  const formObj = {
+    id: task ? task.id : undefined,
+    [TaskSegmentType.DESCRIPTION]: task ? task.description : '',
+    [TaskSegmentType.ANSWER]: task ? task.answer : '',
+    [TaskSegmentType.COMMENT]: task ? task.comment : '',
+    [TaskSegmentType.CODE]: task ? task.code : '',
+  };
 
-type propertyName = 'description' | 'answer' | 'code' | 'comment';
-
-export default function useTaskForm(
-  initialData: TaskForm,
-  { onSave }: SaveProps
-) {
-  const [form, setForm] = useState<TaskForm>({ ...initialData });
-
-  console.log({ ...initialData });
+  const [form, setForm] = useState(formObj);
 
   const handleChange = (
-    propertyName: propertyName,
+    segmentType: TaskSegmentType,
     e: ChangeEvent<HTMLTextAreaElement>
   ) => {
     setForm({
       ...form,
-      [propertyName]: e.target.value,
+      [segmentType]: e.target.value,
     });
   };
 
-  const getPropertyState = (propertyName: propertyName) => {
+  const getPropertyState = (segmentType: TaskSegmentType) => {
     return {
-      value: form[propertyName],
+      content: form[segmentType],
       onChange: (e: ChangeEvent<HTMLTextAreaElement>) =>
-        handleChange(propertyName, e),
+        handleChange(segmentType, e),
     };
   };
 
-  const handleSaveChanges = async () => {
-    console.log(form);
-
-    const response = await patch(`tasks/${initialData.id}`, form);
-
-    if (response) onSave();
-  };
-
-  return { getPropertyState, handleSaveChanges };
+  return { getPropertyState };
 }

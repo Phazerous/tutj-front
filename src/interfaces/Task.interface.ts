@@ -1,7 +1,6 @@
-export default interface ITask {
+export default interface Task {
   id: number;
   examNum: number;
-  taskOrder: number;
   description: string;
   answer: string;
   code: string;
