@@ -12,6 +12,21 @@ export const post = async (path: string, body: object) => {
   const response = await fetch(baseRoute + path, {
     method: 'POST',
     body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  return handleResponse(response);
+};
+
+export const patch = async (path: string, body: object) => {
+  const response = await fetch(baseRoute + path, {
+    method: 'PATCH',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });
 
   return handleResponse(response);

@@ -7,25 +7,38 @@ import { androidstudio } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import { useState } from 'react';
 import TextArea from '../text-area/text-area';
 import useTaskForm from '../../../../hooks/useTaskForm';
+import TaskViewControls from './task-view-controls/task-view-controls';
+import TaskEditControls from './task-edit-controls/task-edit-controls';
+import { useRouter } from 'next/router';
 
 export default function Task({
   id,
   taskOrder,
+  examNum,
   description = '',
   answer = '',
   code = '',
   filesPathes = [],
   comment = '',
 }: ITask & { idx: number }) {
-  const [isEditMode, setEditMode] = useState(false);
-  const register = useTaskForm({
-    description,
-    answer,
-    code,
-    comment,
-  });
+  const router = useRouter();
 
-  const handleEditMode = () => setEditMode(!isEditMode);
+  const handleSave = () => {
+    router.reload();
+  };
+
+  const [isEditMode, setEditMode] = useState(false);
+  const { getPropertyState: register, handleSaveChanges } = useTaskForm(
+    {
+      id,
+      examNum,
+      description,
+      answer,
+      code,
+      comment,
+    },
+    { onSave: handleSave }
+  );
 
   const files = filesPathes.map((filePath: string, idx: number) => {
     const chunks = filePath.split('.');
@@ -43,7 +56,7 @@ export default function Task({
   });
 
   function renderSegment(
-    propertyName: 'descripiton' | 'answer' | 'code' | 'comment'
+    propertyName: 'descripiton' | 'answer' | 'code' | 'comment' | 'controls'
   ) {
     switch (propertyName) {
       case 'descripiton':
@@ -103,6 +116,17 @@ export default function Task({
             )}
           </div>
         );
+
+      case 'controls':
+        if (isEditMode)
+          return (
+            <TaskEditControls
+              onBack={() => setEditMode(false)}
+              onSave={handleSaveChanges}
+            />
+          );
+
+        return <TaskViewControls onEdit={() => setEditMode(true)} />;
     }
   }
 
@@ -115,23 +139,9 @@ export default function Task({
           {renderSegment('answer')}
           {renderSegment('code')}
           {renderSegment('comment')}
-          <div
-            className={styles.edit}
-            onClick={handleEditMode}>
-            {editIcon}
-          </div>
+          {renderSegment('controls')}
         </div>
       </article>
     </>
   );
 }
-
-const editIcon = (
-  <Image
-    src='/icons/edit.svg'
-    width={18}
-    height={18}
-    className={styles.noSelect}
-    alt='Edit Icon'
-  />
-);

@@ -1,5 +1,6 @@
 export default interface ITask {
   id: number;
+  examNum: number;
   taskOrder: number;
   description: string;
   answer: string;
