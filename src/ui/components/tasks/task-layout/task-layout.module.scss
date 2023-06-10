@@ -1,0 +1,10 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+
+  box-sizing: content-box;
+  width: 900px;
+  padding: 40px;
+  background-color: #fff;
+}

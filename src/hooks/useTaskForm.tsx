@@ -1,14 +1,24 @@
 import { ChangeEvent, useState } from 'react';
-import { TaskSegmentType } from '../ui/components/tasks/task/task-segment-type.enum';
+import { TaskSegmentType } from '../ui/components/tasks/task-segment-type.enum';
 import Task from '../interfaces/task.interface';
 
 interface TaskFormProps {
   task?: Task | undefined;
 }
 
-export default function useTaskForm({ task }: TaskFormProps = {}) {
+export default function useTaskForm({ task }: TaskFormProps = {}): [
+  {
+    description: string;
+    answer: string;
+    comment: string;
+    code: string;
+  },
+  (segmentType: TaskSegmentType) => {
+    content: string;
+    onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  }
+] {
   const formObj = {
-    id: task ? task.id : undefined,
     [TaskSegmentType.DESCRIPTION]: task ? task.description : '',
     [TaskSegmentType.ANSWER]: task ? task.answer : '',
     [TaskSegmentType.COMMENT]: task ? task.comment : '',
@@ -27,7 +37,7 @@ export default function useTaskForm({ task }: TaskFormProps = {}) {
     });
   };
 
-  const getPropertyState = (segmentType: TaskSegmentType) => {
+  const linkPropertyState = (segmentType: TaskSegmentType) => {
     return {
       content: form[segmentType],
       onChange: (e: ChangeEvent<HTMLTextAreaElement>) =>
@@ -35,5 +45,19 @@ export default function useTaskForm({ task }: TaskFormProps = {}) {
     };
   };
 
-  return { getPropertyState };
+  const {
+    [TaskSegmentType.DESCRIPTION]: description,
+    [TaskSegmentType.ANSWER]: answer,
+    [TaskSegmentType.COMMENT]: comment,
+    [TaskSegmentType.CODE]: code,
+  } = form;
+
+  const outputObj = {
+    description,
+    answer,
+    comment,
+    code,
+  };
+
+  return [outputObj, linkPropertyState];
 }

@@ -1,5 +1,5 @@
 export enum TaskSegmentType {
-  DESCRIPTION = '',
+  DESCRIPTION = 'Условие',
   ANSWER = 'Ответ',
   CODE = 'Код',
   COMMENT = 'Комментарий',

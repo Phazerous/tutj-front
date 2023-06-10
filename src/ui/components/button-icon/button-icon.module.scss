@@ -1,0 +1,11 @@
+.container {
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  &.back {
+    padding: 14.5px;
+  }
+}

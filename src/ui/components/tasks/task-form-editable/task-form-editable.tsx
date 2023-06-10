@@ -1,16 +1,16 @@
-import useTaskForm from '../../../../../hooks/useTaskForm';
-import Task from '../../../../../interfaces/task.interface';
 import TaskFormSegmentEditable from './task-form-segment-editable/task-form-segment-editable';
 import styles from './task-form-editable.module.scss';
 import { TaskSegmentType } from '../task-segment-type.enum';
+import { ChangeEvent } from 'react';
 
 interface TaskFormProps {
-  task?: Task;
+  linkPropertyState: (segmentType: TaskSegmentType) => {
+    content: string;
+    onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  };
 }
 
-export default function TaskFormEditable({ task }: TaskFormProps = {}) {
-  const { getPropertyState } = useTaskForm({ task });
-
+export default function TaskFormEditable({ linkPropertyState }: TaskFormProps) {
   const segments: TaskSegmentType[] = [
     TaskSegmentType.DESCRIPTION,
     TaskSegmentType.ANSWER,
@@ -25,7 +25,7 @@ export default function TaskFormEditable({ task }: TaskFormProps = {}) {
           <TaskFormSegmentEditable
             key={segment}
             segmentType={segment}
-            {...getPropertyState(segment)}
+            {...linkPropertyState(segment)}
           />
         ))}
       </form>

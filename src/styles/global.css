@@ -66,3 +66,7 @@ p,
 textarea {
   font-size: 14px;
 }
+
+.noSelect {
+  user-select: none;
+}
