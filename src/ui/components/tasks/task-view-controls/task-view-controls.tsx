@@ -3,12 +3,25 @@ import styles from './task-view-controls.module.scss';
 
 interface TaskViewControls {
   onEdit: () => void;
+  onBack: () => void;
 }
 
-export default function TaskViewControls({ onEdit }: TaskViewControls) {
+export default function TaskViewControls({ onEdit, onBack }: TaskViewControls) {
   return (
     <>
       <div className={styles.controls}>
+        <div
+          className={styles.back}
+          onClick={onBack}>
+          <Image
+            className={styles.noSelectable}
+            src='/icons/back.svg'
+            width={20}
+            height={12}
+            alt='Back Icon'
+          />
+        </div>
+
         <div
           className={styles.edit}
           onClick={onEdit}>

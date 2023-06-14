@@ -16,7 +16,8 @@ export default function useTaskForm({ task }: TaskFormProps = {}): [
   (segmentType: TaskSegmentType) => {
     content: string;
     onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void;
-  }
+  },
+  any
 ] {
   const formObj = {
     [TaskSegmentType.DESCRIPTION]: task ? task.description : '',
@@ -59,5 +60,9 @@ export default function useTaskForm({ task }: TaskFormProps = {}): [
     code,
   };
 
-  return [outputObj, linkPropertyState];
+  const resetObj = () => {
+    setForm(formObj);
+  };
+
+  return [outputObj, linkPropertyState, resetObj];
 }

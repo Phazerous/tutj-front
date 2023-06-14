@@ -4,7 +4,7 @@ interface TaskSegment {
 }
 
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/default-highlight';
-import { TaskSegmentType } from '../../../task-segment-type.enum';
+import { TaskSegmentType } from '../../task-segment-type.enum';
 import { androidstudio } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import styles from './task-form-segment.module.scss';
 

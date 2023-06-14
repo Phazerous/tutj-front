@@ -1,27 +1,24 @@
-import { createArrayChunk } from '../../../../lib/utils';
-import ExamNumRow from '../exam-num-row/exam-num-row';
+import ExamNumField from '../exam-num-field/exam-num-field';
 
 interface ExamNumsTableProps {
   examNums: number[];
-  elementsInRow: number;
+  handleClick: (examNum: number) => void;
 }
 
 import styles from './exam-num-table.module.scss';
 
 export default function ExamNumTable({
   examNums,
-  elementsInRow,
+  handleClick,
 }: ExamNumsTableProps) {
-  const rows = createArrayChunk(examNums, elementsInRow);
-
   return (
     <>
       <div className={styles.table}>
-        {rows.map((row, idx) => (
-          <ExamNumRow
-            key={idx}
-            examNums={row}
-            elementsInRow={elementsInRow}
+        {examNums.map((examNum) => (
+          <ExamNumField
+            onClick={handleClick}
+            key={examNum}
+            examNum={examNum}
           />
         ))}
       </div>

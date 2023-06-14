@@ -1,8 +1,10 @@
 .table {
-  width: 1360px;
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
 
-  display: flex;
-  flex-direction: column;
+  align-content: center;
+  justify-content: center;
 
-  row-gap: 32px;
+  column-gap: 44px;
+  row-gap: 12px;
 }

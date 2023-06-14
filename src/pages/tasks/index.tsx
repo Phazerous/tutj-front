@@ -5,6 +5,8 @@ import useSWR from 'swr';
 import { get } from '../../lib/routing/base';
 import TaskTable from '../../ui/components/tasks/task-table/task-table';
 
+import styles from '../../styles/main.module.scss';
+
 export default function Tasks() {
   const router = useRouter();
   const { examNum } = router.query;
@@ -25,6 +27,8 @@ export default function Tasks() {
 
   return (
     <>
+      <h2 className={styles.title}>Задания ЕГЭ №{examNum}</h2>
+
       <TaskTable tasksIds={tasksIds} />
     </>
   );

@@ -1,8 +1,9 @@
 .table {
   display: grid;
   justify-content: center;
+  align-content: center;
 
-  grid-template-columns: repeat(6, min-content);
-  column-gap: 20px;
+  grid-template-columns: repeat(5, min-content);
+  column-gap: 44px;
   row-gap: 12px;
 }

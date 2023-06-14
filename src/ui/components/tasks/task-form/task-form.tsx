@@ -1,5 +1,5 @@
-import Task from '../../../../../interfaces/task.interface';
-import { TaskSegmentType } from '../../task-segment-type.enum';
+import Task from '../../../../interfaces/task.interface';
+import { TaskSegmentType } from '../task-segment-type.enum';
 import TaskFormSegment from './task-form-segment/task-form-segment';
 import styles from './task-form.module.scss';
 

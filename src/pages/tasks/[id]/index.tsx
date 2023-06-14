@@ -23,11 +23,5 @@ export default function TaskPage() {
 
   const taskData = data as unknown as temp;
 
-  return (
-    <Task
-      {...taskData}
-      taskOrder={99}
-      idx={5}
-    />
-  );
+  return <Task task={{ ...taskData }} />;
 }
